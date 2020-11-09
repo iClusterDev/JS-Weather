@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+  font-family: sans-serif;
+  color: white;
+}
+
+.wheather-info {
+  border: solid 1px;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  padding: 3rem 1rem;
+  margin: 1rem 0;
+}
+
+.wheather-info-top {
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.wheather-info-bottom {
+  justify-content: center;
+  flex-direction: column;
+}
