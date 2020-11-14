@@ -4,18 +4,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Weather</title>
   </head>
 
   <body>
     <div class="wheather-info wheather-info-top">
-      <div class="location">London</div>
-      <div class="icon">icon</div>
+      <div id="location"></div>
     </div>
     <div class="wheather-info wheather-info-bottom">
-      <div class="temperature-value">32 <span>F</span> </div>
-      <div class="temperature-description">cold</div>
+      <div id="temperature">
+        <div id="temperature-value"></div>
+        <small id="temperature-unit"></small>
+      </div>
+      <div id="description"></div>
     </div>
 
     <script src="app.js"></script>
