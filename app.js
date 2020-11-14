@@ -24,7 +24,7 @@ class Weather {
    */
   static getDataByCoords({ latitude, longitude }) {
     return new Promise((resolve, reject) => {
-      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=a7be1c4a4c11d353c8e6f21fe0cf6d62`;
+      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`;
       fetch(api)
         .then((response) => {
           return response.json();
