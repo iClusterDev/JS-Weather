@@ -1,6 +1,16 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 class AppLocation extends LitElement {
+  static get styles() {
+    return css`
+      #location {
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+    `;
+  }
+
   static get properties() {
     return {
       name: { type: String, attribute: true },
@@ -13,7 +23,7 @@ class AppLocation extends LitElement {
   }
 
   render() {
-    return html` <div>${this.name}</div> `;
+    return html` <div id="location">${this.name}</div> `;
   }
 }
 

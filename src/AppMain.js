@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import Weather from './js/lib/Weather';
 import './js/components/AppError';
 import './js/components/AppLoading';
@@ -16,13 +16,31 @@ const loadingTemplate = () => {
 
 const dataTemplate = (location, temperature, description) => {
   return html`
-    <app-location name="${location}"></app-location>
-    <app-temperature value="${temperature}"></app-temperature>
-    <app-description text="${description}"></app-description>
+    <div id="app">
+      <app-location name="${location}"></app-location>
+      <app-temperature value="${temperature}"></app-temperature>
+      <app-description text="${description}"></app-description>
+    </div>
   `;
 };
 
 class AppMain extends LitElement {
+  static get styles() {
+    return css`
+      #app {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        font-weight: 300;
+      }
+    `;
+  }
+
   static get properties() {
     return {
       error: { type: Boolean, attribute: false },

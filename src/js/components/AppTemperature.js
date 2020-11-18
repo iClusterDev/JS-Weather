@@ -1,6 +1,21 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 class AppTemperature extends LitElement {
+  static get styles() {
+    return css`
+      #temperature {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      #temperature-value {
+        font-size: 3rem;
+      }
+    `;
+  }
+
   static get properties() {
     return {
       value: { type: Number, attribute: true },
@@ -13,7 +28,12 @@ class AppTemperature extends LitElement {
   }
 
   render() {
-    return html` <div>${this.value}</div> `;
+    return html`
+      <div id="temperature">
+        <div id="temperature-value">${this.value}</div>
+        <small>degrees</small>
+      </div>
+    `;
   }
 }
 
