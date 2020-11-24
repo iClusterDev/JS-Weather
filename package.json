@@ -7,7 +7,9 @@
     "preinstall": "npx npm-force-resolutions",
     "clean": "rm -rf ./development && rm -rf ./.cache && rm -rf ./dist",
     "build": "npm run clean && parcel build public/index.html --out-dir dist --public-url ./",
-    "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000"
+    "dev": "npm run clean && parcel public/index.html --out-dir development -p 3000",
+    "start": "node ./server/server.js",
+    "dev-server": "nodemon ./server/server.js"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,8 @@
     ]
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "lit-element": "^2.4.0"
   }
 }
