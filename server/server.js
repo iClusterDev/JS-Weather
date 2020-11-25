@@ -1,17 +1,22 @@
-const cors = require('cors');
 const express = require('express');
 
-const port = process.env.PORT || 5000;
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema.js');
+const cors = require('cors');
 
 const app = express();
 
+// enable `cors` to set HTTP response header: Access-Control-Allow-Origin: *
 app.use(cors());
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/public'));
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-}
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+  })
+);
 
-app.get('*', (req, res) => res.send('hello'));
-
-app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(4000, () => {
+  console.log('Server is running on port 4000..');
+});

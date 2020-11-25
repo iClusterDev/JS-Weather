@@ -6,6 +6,9 @@ import './js/components/AppLocation';
 import './js/components/AppTemperature';
 import './js/components/AppDescription';
 
+// import axios for graphql server
+import axios from 'axios';
+
 const errorTemplate = () => {
   return html` <app-error></app-error> `;
 };
@@ -64,14 +67,25 @@ class AppMain extends LitElement {
     if (this.error) {
       return errorTemplate();
     } else {
-      return this.loading ? loadingTemplate() : dataTemplate(this.location, this.temperature, this.description);
+      return this.loading
+        ? loadingTemplate()
+        : dataTemplate(this.location, this.temperature, this.description);
     }
   }
 
   async firstUpdated() {
+    // send a dummy requuest to the server
+    // axios
+    //   .get('http://localhost:5000/weather')
+    //   .then((response) => console.log(response));
+
     try {
       const coords = await Weather.getDeviceCoords();
-      const { temperature, location, description } = await Weather.getDataByCoords(coords);
+      const {
+        temperature,
+        location,
+        description,
+      } = await Weather.getDataByCoords(coords);
       this.location = location;
       this.temperature = temperature;
       this.description = description;
