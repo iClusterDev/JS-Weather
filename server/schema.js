@@ -1,4 +1,10 @@
-const { GraphQLObjectType, GraphQLSchema, GraphQLString } = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLNonNull,
+  GraphQLSchema,
+  GraphQLString,
+  GraphQLFloat,
+} = require('graphql');
 
 // Hardcoded data
 const data = [
@@ -24,13 +30,12 @@ const RootQuery = new GraphQLObjectType({
     weather: {
       type: WeatherType,
       args: {
-        location: { type: GraphQLString },
+        latitude: { type: new GraphQLNonNull(GraphQLFloat) },
+        longitude: { type: new GraphQLNonNull(GraphQLFloat) },
       },
       resolve(parentValue, args) {
         for (let i = 0; i < data.length; i++) {
-          if (data[i].location == args.location) {
-            return data[i];
-          }
+          return data[0];
         }
       },
     },
