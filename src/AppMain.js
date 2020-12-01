@@ -75,24 +75,35 @@ class AppMain extends LitElement {
 
   async firstUpdated() {
     // send a dummy requuest to the server
-    // axios
-    //   .get('http://localhost:5000/weather')
-    //   .then((response) => console.log(response));
-
-    try {
-      const coords = await Weather.getDeviceCoords();
-      const {
-        temperature,
-        location,
-        description,
-      } = await Weather.getDataByCoords(coords);
-      this.location = location;
-      this.temperature = temperature;
-      this.description = description;
-      this.loading = false;
-    } catch (error) {
-      this.error = true;
-    }
+    const weatherQuery = (latitude, longitude) => {
+      return `
+        query weatherQuery {
+          weather(latitude: ${latitude}, longitude: ${longitude} ){
+            temperature,
+            description,
+            location
+          }
+        }
+      `;
+    };
+    const query = weatherQuery(10.0, 20.0);
+    axios
+      .post('http://localhost:4000/graphql', { query })
+      .then((response) => console.log(response.data));
+    // try {
+    //   const coords = await Weather.getDeviceCoords();
+    //   const {
+    //     temperature,
+    //     location,
+    //     description,
+    //   } = await Weather.getDataByCoords(coords);
+    //   this.location = location;
+    //   this.temperature = temperature;
+    //   this.description = description;
+    //   this.loading = false;
+    // } catch (error) {
+    //   this.error = true;
+    // }
   }
 }
 
